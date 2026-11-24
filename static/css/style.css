@@ -192,3 +192,5 @@ html {
   color: #fda4af;
 }
 
+
+.form-group input[type="checkbox"] { width: auto; display: inline-block; }

@@ -1,99 +1,24 @@
+"""Forms for the concrete classes in the enrichment diagram."""
 from django import forms
-from django.utils.safestring import SafeString
-from .models import *
+from django.utils.safestring import mark_safe
 
-class PelangganForm(forms.ModelForm):
+
+class DiagramModelForm(forms.ModelForm):
     def as_div(self):
-        return SafeString(super().as_div().replace("<div>", "<div class='form-group'>"))
+        return mark_safe(super().as_div().replace('<div>', '<div class="form-group">'))
 
-    class Meta:
-        model = Pelanggan
-        fields = ('__all__')
-
-class AlamatDeliveryForm(forms.ModelForm):
-    def as_div(self):
-        return SafeString(super().as_div().replace("<div>", "<div class='form-group'>"))
-
-    class Meta:
-        model = AlamatDelivery
-        fields = ('__all__')
-
-class OutletForm(forms.ModelForm):
-    def as_div(self):
-        return SafeString(super().as_div().replace("<div>", "<div class='form-group'>"))
-
-    class Meta:
-        model = Outlet
-        fields = ('__all__')
-
-class KokiForm(forms.ModelForm):
-    def as_div(self):
-        return SafeString(super().as_div().replace("<div>", "<div class='form-group'>"))
-
-    class Meta:
-        model = Koki
-        fields = ('__all__')
-
-class KurirForm(forms.ModelForm):
-    def as_div(self):
-        return SafeString(super().as_div().replace("<div>", "<div class='form-group'>"))
-
-    class Meta:
-        model = Kurir
-        fields = ('__all__')
-
-class MenuForm(forms.ModelForm):
-    def as_div(self):
-        return SafeString(super().as_div().replace("<div>", "<div class='form-group'>"))
-
-    class Meta:
-        model = Menu
-        fields = ('__all__')
-
-class PesananForm(forms.ModelForm):
-    def as_div(self):
-        return SafeString(super().as_div().replace("<div>", "<div class='form-group'>"))
-
-    class Meta:
-        model = Pesanan
-        fields = ('__all__')
-
-class DetailPesananForm(forms.ModelForm):
-    def as_div(self):
-        return SafeString(super().as_div().replace("<div>", "<div class='form-group'>"))
-
-    class Meta:
-        model = DetailPesanan
-        fields = ('__all__')
-
-class PembayaranForm(forms.ModelForm):
-    def as_div(self):
-        return SafeString(super().as_div().replace("<div>", "<div class='form-group'>"))
-
-    class Meta:
-        model = Pembayaran
-        fields = ('__all__')
-
-class NotaPesananForm(forms.ModelForm):
-    def as_div(self):
-        return SafeString(super().as_div().replace("<div>", "<div class='form-group'>"))
-
-    class Meta:
-        model = NotaPesanan
-        fields = ('__all__')
-
-class PengingatForm(forms.ModelForm):
-    def as_div(self):
-        return SafeString(super().as_div().replace("<div>", "<div class='form-group'>"))
-
-    class Meta:
-        model = Pengingat
-        fields = ('__all__')
-
-class KuponDiskonForm(forms.ModelForm):
-    def as_div(self):
-        return SafeString(super().as_div().replace("<div>", "<div class='form-group'>"))
-
-    class Meta:
-        model = KuponDiskon
-        fields = ('__all__')
+    def clean(self):
+        data = super().clean()
+        name = self._meta.model.__name__
+        if name == 'Pesanan':
+            alamat, pelanggan = data.get('alamat_delivery'), data.get('pelanggan')
+            koki, outlet = data.get('koki'), data.get('outlet')
+            if alamat and pelanggan and alamat.pelanggan_id != pelanggan.pk:
+                self.add_error('alamat_delivery', 'Alamat harus milik pelanggan yang dipilih.')
+            if koki and outlet and koki.outlet_id != outlet.pk:
+                self.add_error('koki', 'Koki harus bekerja di outlet yang dipilih.')
+        if name == 'DetailPesanan':
+            pesanan, menu = data.get('pesanan'), data.get('menu')
+            if pesanan and menu and not menu.menu_outlet.filter(outlet=pesanan.outlet).exists():
+                self.add_error('menu', 'Menu harus ditawarkan pada outlet pesanan.')
+        return data

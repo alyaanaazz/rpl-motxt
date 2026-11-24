@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<uml:Model xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmi:version="2.5" xmi:id="KebabDEL" name="KebabDEL">
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="type_Integer" name="Integer" />
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="type_String" name="String" />
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="type_Boolean" name="Boolean" />
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="type_DateTime" name="DateTime" />
+  <packagedElement xmi:type="uml:Class" xmi:id="class_Pengguna" name="Pengguna" isAbstract="true">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pengguna_idPengguna" name="idPengguna" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pengguna_namaLengkap" name="namaLengkap" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pengguna_nomorTelepon" name="nomorTelepon" type="type_String" visibility="private" />
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="class_Pelanggan" name="Pelanggan">
+    <generalization xmi:id="Pelanggan_inherits" general="class_Pengguna" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pelanggan_email" name="email" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="MemilikiAlamat_b" name="alamatDelivery" type="class_AlamatDelivery" association="MemilikiAlamat" visibility="private" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="MemilikiAlamat_b_lower" value="0" />
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="MemilikiAlamat_b_upper" value="*" />
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Melakukan_b" name="pesanan" type="class_Pesanan" association="Melakukan" visibility="private">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Melakukan_b_lower" value="1" />
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Melakukan_b_upper" value="1" />
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="class_AlamatDelivery" name="AlamatDelivery">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="AlamatDelivery_idAlamat" name="idAlamat" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="AlamatDelivery_detailAlamat" name="detailAlamat" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="MemilikiAlamat_a" name="pelanggan" type="class_Pelanggan" association="MemilikiAlamat" visibility="private">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="MemilikiAlamat_a_lower" value="1" />
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="MemilikiAlamat_a_upper" value="1" />
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="DikirimKe_b" name="pesanan" type="class_Pesanan" association="DikirimKe" visibility="private">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="DikirimKe_b_lower" value="0" />
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="DikirimKe_b_upper" value="*" />
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="class_Outlet" name="Outlet">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Outlet_idOutlet" name="idOutlet" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Outlet_namaOutlet" name="namaOutlet" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Outlet_lokasiOutlet" name="lokasiOutlet" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Mempekerjakan_b" name="koki" type="class_Koki" association="Mempekerjakan" visibility="private">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Mempekerjakan_b_lower" value="1" />
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Mempekerjakan_b_upper" value="*" />
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="DitujukanKe_b" name="pesanan" type="class_Pesanan" association="DitujukanKe" visibility="private">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="DitujukanKe_b_lower" value="0" />
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="DitujukanKe_b_upper" value="*" />
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Menawarkan_b" name="menu" type="class_Menu" association="class_MenuOutlet" visibility="private">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Menawarkan_b_lower" value="1" />
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Menawarkan_b_upper" value="*" />
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="class_Koki" name="Koki">
+    <generalization xmi:id="Koki_inherits" general="class_Pengguna" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Koki_nipKoki" name="nipKoki" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Memproses_b" name="pesanan" type="class_Pesanan" association="Memproses" visibility="private">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Memproses_b_lower" value="0" />
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Memproses_b_upper" value="*" />
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Mempekerjakan_a" name="outlet" type="class_Outlet" association="Mempekerjakan" visibility="private">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Mempekerjakan_a_lower" value="1" />
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Mempekerjakan_a_upper" value="1" />
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="class_Menu" name="Menu">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Menu_idMenu" name="idMenu" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Menu_namaMenu" name="namaMenu" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Menu_hargaDasar" name="hargaDasar" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Menu_deskripsi" name="deskripsi" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Mencakup_a" name="pesanan" type="class_Pesanan" association="class_DetailPesanan" visibility="private">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Mencakup_a_lower" value="0" />
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Mencakup_a_upper" value="*" />
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Menawarkan_a" name="outlet" type="class_Outlet" association="class_MenuOutlet" visibility="private">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Menawarkan_a_lower" value="1" />
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Menawarkan_a_upper" value="*" />
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="class_Pesanan" name="Pesanan">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pesanan_idPesanan" name="idPesanan" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pesanan_waktuPesan" name="waktuPesan" type="type_DateTime" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pesanan_jenisLayanan" name="jenisLayanan" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pesanan_statusPesanan" name="statusPesanan" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pesanan_totalHarga" name="totalHarga" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Melakukan_a" name="pelanggan" type="class_Pelanggan" association="Melakukan" visibility="private">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Melakukan_a_lower" value="1" />
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Melakukan_a_upper" value="1" />
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Memproses_a" name="koki" type="class_Koki" association="Memproses" visibility="private">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Memproses_a_lower" value="0" />
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Memproses_a_upper" value="1" />
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="DitujukanKe_a" name="outlet" type="class_Outlet" association="DitujukanKe" visibility="private">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="DitujukanKe_a_lower" value="1" />
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="DitujukanKe_a_upper" value="1" />
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="DikirimKe_a" name="alamatDelivery" type="class_AlamatDelivery" association="DikirimKe" visibility="private">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="DikirimKe_a_lower" value="0" />
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="DikirimKe_a_upper" value="1" />
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="MemilikiPembayaran_b" name="pembayaran" type="class_Pembayaran" association="MemilikiPembayaran" visibility="private" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="MemilikiPembayaran_b_lower" value="1" />
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="MemilikiPembayaran_b_upper" value="1" />
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Mencakup_b" name="menu" type="class_Menu" association="class_DetailPesanan" visibility="private">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Mencakup_b_lower" value="1" />
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Mencakup_b_upper" value="*" />
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="class_Pembayaran" name="Pembayaran">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pembayaran_idPembayaran" name="idPembayaran" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pembayaran_waktuBayar" name="waktuBayar" type="type_DateTime" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pembayaran_metodeBayar" name="metodeBayar" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pembayaran_statusBayar" name="statusBayar" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="MemilikiPembayaran_a" name="pesanan" type="class_Pesanan" association="MemilikiPembayaran" visibility="private">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="MemilikiPembayaran_a_lower" value="1" />
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="MemilikiPembayaran_a_upper" value="1" />
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:AssociationClass" xmi:id="class_DetailPesanan" name="DetailPesanan" memberEnd="Mencakup_a Mencakup_b">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="DetailPesanan_kuantitas" name="kuantitas" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="DetailPesanan_subTotal" name="subTotal" type="type_Integer" visibility="private" />
+  </packagedElement>
+  <packagedElement xmi:type="uml:AssociationClass" xmi:id="class_MenuOutlet" name="MenuOutlet" memberEnd="Menawarkan_a Menawarkan_b">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="MenuOutlet_statusTersedia" name="statusTersedia" type="type_Boolean" visibility="private" />
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="MemilikiAlamat" name="MemilikiAlamat" memberEnd="MemilikiAlamat_a MemilikiAlamat_b" />
+  <packagedElement xmi:type="uml:Association" xmi:id="Melakukan" name="Melakukan" memberEnd="Melakukan_a Melakukan_b" />
+  <packagedElement xmi:type="uml:Association" xmi:id="Memproses" name="Memproses" memberEnd="Memproses_a Memproses_b" />
+  <packagedElement xmi:type="uml:Association" xmi:id="Mempekerjakan" name="Mempekerjakan" memberEnd="Mempekerjakan_a Mempekerjakan_b" />
+  <packagedElement xmi:type="uml:Association" xmi:id="DitujukanKe" name="DitujukanKe" memberEnd="DitujukanKe_a DitujukanKe_b" />
+  <packagedElement xmi:type="uml:Association" xmi:id="DikirimKe" name="DikirimKe" memberEnd="DikirimKe_a DikirimKe_b" />
+  <packagedElement xmi:type="uml:Association" xmi:id="MemilikiPembayaran" name="MemilikiPembayaran" memberEnd="MemilikiPembayaran_a MemilikiPembayaran_b" />
+</uml:Model>

@@ -116,18 +116,11 @@
         <a href="{% url 'main:landing_page' %}" class="mb-0 block text-lg font-black tracking-tight text-slate-900 dark:text-white lg:mb-6 lg:text-xl">KebabDEL</a>
         <p class="mb-3 mt-3 hidden text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400 lg:block">Entities</p>
         <nav class="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 text-sm lg:mx-0 lg:block lg:space-y-2 lg:overflow-visible lg:px-0 lg:pb-0">
-          <a data-entity-link href="{% url 'main:get_pelanggan' %}" class="inline-flex whitespace-nowrap rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60 lg:flex">Pelanggan</a>
-          <a data-entity-link href="{% url 'main:get_alamat_delivery' %}" class="inline-flex whitespace-nowrap rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60 lg:flex">AlamatDelivery</a>
-          <a data-entity-link href="{% url 'main:get_outlet' %}" class="inline-flex whitespace-nowrap rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60 lg:flex">Outlet</a>
-          <a data-entity-link href="{% url 'main:get_koki' %}" class="inline-flex whitespace-nowrap rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60 lg:flex">Koki</a>
-          <a data-entity-link href="{% url 'main:get_kurir' %}" class="inline-flex whitespace-nowrap rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60 lg:flex">Kurir</a>
-          <a data-entity-link href="{% url 'main:get_menu' %}" class="inline-flex whitespace-nowrap rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60 lg:flex">Menu</a>
-          <a data-entity-link href="{% url 'main:get_pesanan' %}" class="inline-flex whitespace-nowrap rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60 lg:flex">Pesanan</a>
-          <a data-entity-link href="{% url 'main:get_detail_pesanan' %}" class="inline-flex whitespace-nowrap rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60 lg:flex">DetailPesanan</a>
-          <a data-entity-link href="{% url 'main:get_pembayaran' %}" class="inline-flex whitespace-nowrap rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60 lg:flex">Pembayaran</a>
-          <a data-entity-link href="{% url 'main:get_nota_pesanan' %}" class="inline-flex whitespace-nowrap rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60 lg:flex">NotaPesanan</a>
-          <a data-entity-link href="{% url 'main:get_pengingat' %}" class="inline-flex whitespace-nowrap rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60 lg:flex">Pengingat</a>
-          <a data-entity-link href="{% url 'main:get_kupon_diskon' %}" class="inline-flex whitespace-nowrap rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60 lg:flex">KuponDiskon</a>
+          {% for entity in diagram_entities %}
+            {% with list_name="main:get_"|add:entity.key %}
+            <a data-entity-link href="{% url list_name %}" class="block whitespace-nowrap rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60">{{ entity.label }}</a>
+            {% endwith %}
+          {% endfor %}
         </nav>
       </aside>
     </template>
@@ -137,18 +130,11 @@
         <a href="{% url 'main:landing_page' %}" class="block text-lg font-black tracking-tight text-slate-900 dark:text-white">KebabDEL</a>
         <p class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">Entities</p>
         <nav class="space-y-2">
-          <a data-entity-link href="{% url 'main:get_pelanggan' %}" class="block rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60">Pelanggan</a>
-          <a data-entity-link href="{% url 'main:get_alamat_delivery' %}" class="block rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60">AlamatDelivery</a>
-          <a data-entity-link href="{% url 'main:get_outlet' %}" class="block rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60">Outlet</a>
-          <a data-entity-link href="{% url 'main:get_koki' %}" class="block rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60">Koki</a>
-          <a data-entity-link href="{% url 'main:get_kurir' %}" class="block rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60">Kurir</a>
-          <a data-entity-link href="{% url 'main:get_menu' %}" class="block rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60">Menu</a>
-          <a data-entity-link href="{% url 'main:get_pesanan' %}" class="block rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60">Pesanan</a>
-          <a data-entity-link href="{% url 'main:get_detail_pesanan' %}" class="block rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60">DetailPesanan</a>
-          <a data-entity-link href="{% url 'main:get_pembayaran' %}" class="block rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60">Pembayaran</a>
-          <a data-entity-link href="{% url 'main:get_nota_pesanan' %}" class="block rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60">NotaPesanan</a>
-          <a data-entity-link href="{% url 'main:get_pengingat' %}" class="block rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60">Pengingat</a>
-          <a data-entity-link href="{% url 'main:get_kupon_diskon' %}" class="block rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60">KuponDiskon</a>
+          {% for entity in diagram_entities %}
+            {% with list_name="main:get_"|add:entity.key %}
+            <a data-entity-link href="{% url list_name %}" class="block whitespace-nowrap rounded-xl px-3 py-2 font-medium text-slate-700 transition hover:bg-white/70 dark:text-slate-200 dark:hover:bg-slate-800/60">{{ entity.label }}</a>
+            {% endwith %}
+          {% endfor %}
         </nav>
       </div>
     </template>

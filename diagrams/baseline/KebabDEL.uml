@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<uml:Model xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmi:version="2.5" xmi:id="KebabDEL" name="KebabDEL">
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="type_Integer" name="Integer" />
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="type_String" name="String" />
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="type_Boolean" name="Boolean" />
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="type_DateTime" name="DateTime" />
+  <packagedElement xmi:type="uml:Class" xmi:id="class_Pelanggan" name="Pelanggan">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pelanggan_id_pelanggan" name="id_pelanggan" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pelanggan_nama" name="nama" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pelanggan_no_hp" name="no_hp" type="type_String" visibility="private" />
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="class_AlamatDelivery" name="AlamatDelivery">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="AlamatDelivery_id_alamat" name="id_alamat" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="AlamatDelivery_alamat_lengkap" name="alamat_lengkap" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="AlamatDelivery_catatan" name="catatan" type="type_String" visibility="private" />
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="class_Outlet" name="Outlet">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Outlet_id_outlet" name="id_outlet" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Outlet_nama_outlet" name="nama_outlet" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Outlet_daerah" name="daerah" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Outlet_alamat_outlet" name="alamat_outlet" type="type_String" visibility="private" />
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="class_Koki" name="Koki">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Koki_id_koki" name="id_koki" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Koki_nama_koki" name="nama_koki" type="type_String" visibility="private" />
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="class_Kurir" name="Kurir">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Kurir_id_kurir" name="id_kurir" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Kurir_nama_kurir" name="nama_kurir" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Kurir_no_hp" name="no_hp" type="type_String" visibility="private" />
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="class_Menu" name="Menu">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Menu_id_menu" name="id_menu" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Menu_nama_menu" name="nama_menu" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Menu_jenis_kebab" name="jenis_kebab" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Menu_harga" name="harga" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Menu_tersedia" name="tersedia" type="type_Boolean" visibility="private" />
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="class_Pesanan" name="Pesanan">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pesanan_id_pesanan" name="id_pesanan" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pesanan_tanggal_pesanan" name="tanggal_pesanan" type="type_DateTime" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pesanan_metode_layanan" name="metode_layanan" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pesanan_status_pesanan" name="status_pesanan" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pesanan_total_harga" name="total_harga" type="type_Integer" visibility="private" />
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="class_DetailPesanan" name="DetailPesanan">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="DetailPesanan_id_detail" name="id_detail" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="DetailPesanan_jumlah" name="jumlah" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="DetailPesanan_subtotal" name="subtotal" type="type_Integer" visibility="private" />
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="class_Pembayaran" name="Pembayaran">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pembayaran_id_pembayaran" name="id_pembayaran" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pembayaran_metode" name="metode" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pembayaran_status_transaksi" name="status_transaksi" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pembayaran_waktu_bayar" name="waktu_bayar" type="type_DateTime" visibility="private" />
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="class_NotaPesanan" name="NotaPesanan">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="NotaPesanan_id_nota" name="id_nota" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="NotaPesanan_jumlah_pesanan" name="jumlah_pesanan" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="NotaPesanan_file_jpg" name="file_jpg" type="type_String" visibility="private" />
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="class_Pengingat" name="Pengingat">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pengingat_id_pengingat" name="id_pengingat" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pengingat_durasi_pengulangan" name="durasi_pengulangan" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pengingat_daftar_pembelian" name="daftar_pembelian" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="Pengingat_is_aktif" name="is_aktif" type="type_Boolean" visibility="private" />
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="class_KuponDiskon" name="KuponDiskon">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="KuponDiskon_id_kupon" name="id_kupon" type="type_Integer" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="KuponDiskon_kode_kupon" name="kode_kupon" type="type_String" visibility="private" />
+    <ownedAttribute xmi:type="uml:Property" xmi:id="KuponDiskon_potongan_harga" name="potongan_harga" type="type_Integer" visibility="private" />
+  </packagedElement>
+</uml:Model>

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block meta %}<title>{{ entity.label }} - KebabDEL</title>{% endblock %}
+{% block content %}
+<section class="mx-4 grid gap-6 md:mx-8 lg:mx-12 lg:grid-cols-[260px_1fr]">
+  <div class="hidden lg:block" data-entity-sidebar></div>
+  <div class="min-w-0 space-y-6">
+    <header class="rounded-3xl border border-white/20 bg-white/60 p-6 shadow-xl dark:bg-slate-900/60">
+      <p class="text-xs font-semibold uppercase tracking-widest text-slate-500">KebabDEL</p>
+      <h1 class="mt-1 text-3xl font-black text-slate-900 dark:text-white">{{ entity.label }}</h1>
+      <a href="{{ create_url }}" class="mt-4 inline-flex rounded-xl bg-indigo-600 px-5 py-3 font-semibold text-white">Tambah {{ entity.label }}</a>
+    </header>
+    {% if error %}<p role="alert" class="rounded-xl bg-rose-100 p-4 text-rose-800">{{ error }}</p>{% endif %}
+    <div class="overflow-x-auto rounded-3xl border border-white/20 bg-white/60 shadow-xl dark:bg-slate-900/60">
+      <table class="w-full text-left text-sm text-slate-800 dark:text-slate-200">
+        <thead class="bg-slate-100 dark:bg-slate-800"><tr>
+          {% for field in fields %}<th class="whitespace-nowrap px-5 py-4">{{ field|capfirst }}</th>{% endfor %}
+          <th class="px-5 py-4">Aksi</th>
+        </tr></thead>
+        <tbody>{% for row in rows %}<tr class="border-t border-slate-200 dark:border-slate-700">
+          {% for value in row.values %}<td class="px-5 py-4">{{ value|default_if_none:'—' }}</td>{% endfor %}
+          <td class="px-5 py-4"><div class="flex gap-3">
+            <a href="{{ row.edit_url }}" class="rounded-lg bg-indigo-100 px-3 py-2 font-semibold text-indigo-800">Edit</a>
+            <form method="post" action="{{ delete_url }}">{% csrf_token %}
+              <input type="hidden" name="object_id" value="{{ row.object.pk }}">
+              <button class="rounded-lg bg-rose-100 px-3 py-2 font-semibold text-rose-800" type="submit">Hapus</button>
+            </form>
+          </div></td>
+        </tr>{% empty %}<tr><td colspan="{{ fields|length|add:1 }}" class="px-5 py-10 text-center">Belum ada data {{ entity.label }}.</td></tr>{% endfor %}</tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,104 @@
+from django.db import models
+from django.utils import timezone
+
+
+class Pengguna(models.Model):
+    id_pengguna = models.IntegerField()
+    nama_lengkap = models.CharField(max_length=255)
+    nomor_telepon = models.CharField(max_length=255)
+    
+    pass
+
+class Pelanggan(Pengguna):
+    email = models.CharField(max_length=255)
+    pesanan = models.OneToOneField(Pesanan, on_delete=models.RESTRICT)
+    
+    
+    pass
+
+class AlamatDelivery(models.Model):
+    id_alamat = models.IntegerField()
+    detail_alamat = models.CharField(max_length=255)
+    pelangganFK = models.ForeignKey(Pelanggan, on_delete=models.RESTRICT)
+    
+    
+    pass
+
+class Outlet(models.Model):
+    id_outlet = models.IntegerField()
+    nama_outlet = models.CharField(max_length=255)
+    lokasi_outlet = models.CharField(max_length=255)
+    list_of_Menu = models.ManyToManyField(Menu, through='MenuOutlet')
+    
+    
+    pass
+
+class Koki(Pengguna):
+    nip_koki = models.CharField(max_length=255)
+    outletFK = models.ForeignKey(Outlet, on_delete=models.RESTRICT)
+    
+    
+    pass
+
+class Pesanan(models.Model):
+    id_pesanan = models.IntegerField()
+    waktu_pesan = models.DateTimeField(default=timezone.now, null=True, blank=True)
+    jenis_layanan = models.CharField(max_length=255)
+    status_pesanan = models.CharField(max_length=255)
+    total_harga = models.IntegerField()
+    pelanggan = models.OneToOneField(Pelanggan, on_delete=models.RESTRICT)
+    
+    kokiFK = models.ForeignKey(Koki, on_delete=models.RESTRICT)
+    
+    outletFK = models.ForeignKey(Outlet, on_delete=models.RESTRICT)
+    
+    alamatdeliveryFK = models.ForeignKey(AlamatDelivery, on_delete=models.RESTRICT)
+    
+    pembayaran = models.OneToOneField(Pembayaran, on_delete=models.CASCADE)
+    
+    list_of_Menu = models.ManyToManyField(Menu, through='DetailPesanan')
+    
+    
+    pass
+
+class Menu(models.Model):
+    id_menu = models.IntegerField()
+    nama_menu = models.CharField(max_length=255)
+    harga_dasar = models.IntegerField()
+    deskripsi = models.CharField(max_length=255)
+    list_of_Pesanan = models.ManyToManyField(Pesanan, through='DetailPesanan')
+    
+    list_of_Outlet = models.ManyToManyField(Outlet, through='MenuOutlet')
+    
+    
+    pass
+
+class Pembayaran(models.Model):
+    id_pembayaran = models.IntegerField()
+    waktu_bayar = models.DateTimeField(default=timezone.now, null=True, blank=True)
+    metode_bayar = models.CharField(max_length=255)
+    status_bayar = models.CharField(max_length=255)
+    pesanan = models.OneToOneField(Pesanan, on_delete=models.RESTRICT)
+    
+    
+    pass
+
+class DetailPesanan(models.Model):
+    kuantitas = models.IntegerField()
+    sub_total = models.IntegerField()
+    
+    pass
+
+class MenuOutlet(models.Model):
+    status_tersedia = models.BooleanField(default=False)
+    
+    pass
+class DetailPesanan(models.Model):
+    pesanan = models.ForeignKey(Pesanan, on_delete=models.RESTRICT)
+    menu = models.ForeignKey(Menu, on_delete=models.RESTRICT)
+    pass
+class MenuOutlet(models.Model):
+    outlet = models.ForeignKey(Outlet, on_delete=models.RESTRICT)
+    menu = models.ForeignKey(Menu, on_delete=models.RESTRICT)
+    pass
+

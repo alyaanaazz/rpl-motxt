@@ -1,0 +1,71 @@
+@startuml
+title KebabDEL - rekonstruksi model Django awal (belum ada asosiasi)
+hide methods
+skinparam classAttributeIconSize 0
+class Pelanggan {
+  id_pelanggan : Integer
+  nama : String
+  no_hp : String
+}
+class AlamatDelivery {
+  id_alamat : Integer
+  alamat_lengkap : String
+  catatan : String
+}
+class Outlet {
+  id_outlet : Integer
+  nama_outlet : String
+  daerah : String
+  alamat_outlet : String
+}
+class Koki {
+  id_koki : Integer
+  nama_koki : String
+}
+class Kurir {
+  id_kurir : Integer
+  nama_kurir : String
+  no_hp : String
+}
+class Menu {
+  id_menu : Integer
+  nama_menu : String
+  jenis_kebab : String
+  harga : Integer
+  tersedia : Boolean
+}
+class Pesanan {
+  id_pesanan : Integer
+  tanggal_pesanan : DateTime
+  metode_layanan : String
+  status_pesanan : String
+  total_harga : Integer
+}
+class DetailPesanan {
+  id_detail : Integer
+  jumlah : Integer
+  subtotal : Integer
+}
+class Pembayaran {
+  id_pembayaran : Integer
+  metode : String
+  status_transaksi : String
+  waktu_bayar : DateTime
+}
+class NotaPesanan {
+  id_nota : Integer
+  jumlah_pesanan : Integer
+  file_jpg : String
+}
+class Pengingat {
+  id_pengingat : Integer
+  durasi_pengulangan : String
+  daftar_pembelian : String
+  is_aktif : Boolean
+}
+class KuponDiskon {
+  id_kupon : Integer
+  kode_kupon : String
+  potongan_harga : Integer
+}
+@enduml

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block meta %}<title>{% if editing %}Edit{% else %}Tambah{% endif %} {{ entity.label }} - KebabDEL</title>{% endblock %}
+{% block content %}
+<section class="mx-4 grid gap-6 md:mx-8 lg:mx-12 lg:grid-cols-[260px_1fr]">
+  <div class="hidden lg:block" data-entity-sidebar></div>
+  <div class="rounded-3xl border border-white/20 bg-white/60 p-6 shadow-xl dark:bg-slate-900/60">
+    <h1 class="mb-6 text-3xl font-black text-slate-900 dark:text-white">{% if editing %}Edit{% else %}Tambah{% endif %} {{ entity.label }}</h1>
+    <form method="post" class="space-y-4">{% csrf_token %}{{ form.as_div }}
+      <div class="flex items-center gap-4">
+        <button type="submit" class="rounded-xl bg-indigo-600 px-6 py-3 font-semibold text-white">Simpan</button>
+        <a href="{{ list_url }}" class="font-semibold text-indigo-700 dark:text-indigo-300">Kembali ke daftar</a>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

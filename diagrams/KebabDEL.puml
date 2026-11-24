@@ -1,0 +1,64 @@
+@startuml
+title KebabDEL - sesuai class diagram pengayaan
+hide methods
+skinparam classAttributeIconSize 0
+abstract class Pengguna {
+  idPengguna : Integer
+  namaLengkap : String
+  nomorTelepon : String
+}
+class Pelanggan {
+  email : String
+}
+class AlamatDelivery {
+  idAlamat : Integer
+  detailAlamat : String
+}
+class Outlet {
+  idOutlet : Integer
+  namaOutlet : String
+  lokasiOutlet : String
+}
+class Koki {
+  nipKoki : String
+}
+class Menu {
+  idMenu : Integer
+  namaMenu : String
+  hargaDasar : Integer
+  deskripsi : String
+}
+class Pesanan {
+  idPesanan : Integer
+  waktuPesan : DateTime
+  jenisLayanan : String
+  statusPesanan : String
+  totalHarga : Integer
+}
+class Pembayaran {
+  idPembayaran : Integer
+  waktuBayar : DateTime
+  metodeBayar : String
+  statusBayar : String
+}
+class DetailPesanan {
+  kuantitas : Integer
+  subTotal : Integer
+}
+class MenuOutlet {
+  statusTersedia : Boolean
+}
+Pengguna <|-- Pelanggan
+Pengguna <|-- Koki
+Pelanggan "1" *-- "0..*" AlamatDelivery : memiliki
+Pelanggan "1" -- "1" Pesanan : melakukan
+Koki "0..1" -- "0..*" Pesanan : memproses
+Outlet "1" -- "1..*" Koki : mempekerjakan
+Outlet "1" -- "0..*" Pesanan : ditujukan ke
+Pesanan "0..*" -- "0..1" AlamatDelivery : dikirim ke
+Pesanan "1" *-- "1" Pembayaran : memiliki
+Pesanan "0..*" -- "1..*" Menu : mencakup
+(Pesanan, Menu) .. DetailPesanan
+Outlet "1..*" -- "1..*" Menu : menawarkan
+(Outlet, Menu) .. MenuOutlet
+@enduml
